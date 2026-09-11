@@ -81,7 +81,9 @@ function shuffle<T>(arr: T[]): T[] {
   const copy = [...arr];
   for (let i = copy.length - 1; i > 0; i--) {
     const j = Math.floor(Math.random() * (i + 1));
-    [copy[i], copy[j]] = [copy[j], copy[i]];
+    const tmp = copy[i] as T;
+    copy[i] = copy[j] as T;
+    copy[j] = tmp;
   }
   return copy;
 }
@@ -94,11 +96,11 @@ function Index() {
   const [laatsteFout, setLaatsteFout] = useState(false);
   const [score, setScore] = useState(0);
   const [klaar, setKlaar] = useState(false);
-  const beloningRef = useRef(BELONINGEN[0]);
-  const tekstRef = useRef(JUISTE_TEKSTEN[0]);
-  const foutTekstRef = useRef(FOUTE_TEKSTEN[0]);
+  const beloningRef = useRef(BELONINGEN[0]!);
+  const tekstRef = useRef(JUISTE_TEKSTEN[0]!);
+  const foutTekstRef = useRef(FOUTE_TEKSTEN[0]!);
 
-  const opgave = volgorde[huidige];
+  const opgave = volgorde[huidige]!;
   const toonRobot = pogingen >= 2 && fase === "vraag";
 
   const volgende = useCallback(() => {
