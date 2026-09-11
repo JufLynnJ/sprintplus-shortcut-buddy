@@ -117,8 +117,19 @@ function RootShell({ children }: { children: ReactNode }) {
 function RootComponent() {
   const { queryClient } = Route.useRouteContext();
 
+  const linkClass =
+    "rounded-full px-5 py-2 text-sm font-bold text-muted-foreground transition-colors hover:bg-muted";
+
   return (
     <QueryClientProvider client={queryClient}>
+      <nav className="flex justify-center gap-2 border-b border-border bg-card px-4 py-3">
+        <Link to="/" className={linkClass} activeProps={{ className: "rounded-full px-5 py-2 text-sm font-bold bg-primary text-primary-foreground" }} activeOptions={{ exact: true }}>
+          SprintPlus
+        </Link>
+        <Link to="/sprint-online" className={linkClass} activeProps={{ className: "rounded-full px-5 py-2 text-sm font-bold bg-primary text-primary-foreground" }}>
+          Sprint Online
+        </Link>
+      </nav>
       {/* Required: nested routes render here. Removing <Outlet /> breaks all child routes. */}
       <Outlet />
     </QueryClientProvider>
