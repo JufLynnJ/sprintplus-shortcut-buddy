@@ -122,14 +122,21 @@ function Index() {
   useEffect(() => {
     if (klaar) return;
     const opToets = (e: KeyboardEvent) => {
-      // Laat F5/F12 zonder Shift gewoon door aan de browser
       const code = e.key.toLowerCase();
       if (["control", "shift", "alt", "meta"].includes(code)) return;
+
+      if (fase === "goed") {
+        if (code === "enter" || code === " ") {
+          e.preventDefault();
+          volgende();
+        }
+        return;
+      }
+
+      // Laat F5/F12 zonder Shift gewoon door aan de browser
       if (e.ctrlKey || e.metaKey || (e.shiftKey && code.startsWith("f"))) {
         e.preventDefault();
       }
-
-      if (fase === "goed") return;
 
       const ctrlIngedrukt = e.ctrlKey || e.metaKey; // meta = Cmd op Mac
       const juist =
@@ -151,7 +158,7 @@ function Index() {
     };
     window.addEventListener("keydown", opToets);
     return () => window.removeEventListener("keydown", opToets);
-  }, [opgave, fase, pogingen, klaar]);
+  }, [opgave, fase, pogingen, klaar, volgende]);
 
   const opnieuw = () => {
     setVolgorde(shuffle(SNELTOETSEN));
