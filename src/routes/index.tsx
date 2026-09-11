@@ -139,7 +139,7 @@ function Index() {
         setLaatsteFout(false);
         if (pogingen === 0) setScore((s) => s + 1);
       } else {
-        foutTekstRef.current = FOUTE_TEKSTEN[Math.floor(Math.random() * FOUTE_TEKSTEN.length)];
+        foutTekstRef.current = FOUTE_TEKSTEN[Math.floor(Math.random() * FOUTE_TEKSTEN.length)]!;
         setPogingen((p) => p + 1);
         setLaatsteFout(true);
       }
