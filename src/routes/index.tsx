@@ -89,7 +89,7 @@ function shuffle<T>(arr: T[]): T[] {
 }
 
 function Index() {
-  const [volgorde, setVolgorde] = useState<Sneltoets[]>(() => shuffle(SNELTOETSEN));
+  const [volgorde, setVolgorde] = useState<Sneltoets[]>(SNELTOETSEN);
   const [huidige, setHuidige] = useState(0);
   const [pogingen, setPogingen] = useState(0);
   const [fase, setFase] = useState<"vraag" | "goed">("vraag");
