@@ -273,6 +273,7 @@ function Index() {
             >
               Volgende oefening
             </button>
+            <p className="text-sm text-muted-foreground">Druk op Enter of Spatie om door te gaan</p>
           </div>
         )}
       </section>
