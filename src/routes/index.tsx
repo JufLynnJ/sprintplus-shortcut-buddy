@@ -103,6 +103,11 @@ function Index() {
   const opgave = volgorde[huidige]!;
   const toonRobot = pogingen >= 2 && fase === "vraag";
 
+  // Pas na het laden in de browser door elkaar schudden (anders laadfout)
+  useEffect(() => {
+    setVolgorde(shuffle(SNELTOETSEN));
+  }, []);
+
   const volgende = useCallback(() => {
     if (huidige + 1 >= volgorde.length) {
       setKlaar(true);
