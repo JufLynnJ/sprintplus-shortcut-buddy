@@ -131,11 +131,11 @@ function Index() {
 
       if (fase === "goed") return;
 
+      const ctrlIngedrukt = e.ctrlKey || e.metaKey; // meta = Cmd op Mac
       const juist =
         code === opgave.code &&
-        !!e.ctrlKey === !!opgave.ctrl &&
-        !!e.metaKey === !!opgave.ctrl &&
-        !!e.shiftKey === !!opgave.shift;
+        ctrlIngedrukt === !!opgave.ctrl &&
+        e.shiftKey === !!opgave.shift;
 
       if (juist) {
         beloningRef.current = BELONINGEN[Math.floor(Math.random() * BELONINGEN.length)]!;
