@@ -133,8 +133,8 @@ function Index() {
         !!e.shiftKey === !!opgave.shift;
 
       if (juist) {
-        beloningRef.current = BELONINGEN[Math.floor(Math.random() * BELONINGEN.length)];
-        tekstRef.current = JUISTE_TEKSTEN[Math.floor(Math.random() * JUISTE_TEKSTEN.length)];
+        beloningRef.current = BELONINGEN[Math.floor(Math.random() * BELONINGEN.length)]!;
+        tekstRef.current = JUISTE_TEKSTEN[Math.floor(Math.random() * JUISTE_TEKSTEN.length)]!;
         setFase("goed");
         setLaatsteFout(false);
         if (pogingen === 0) setScore((s) => s + 1);
