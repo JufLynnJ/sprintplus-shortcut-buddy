@@ -1,3 +1,3 @@
-- [ ] Voeg de drie aangeleverde Sprint Online-werkbalken toe met aanklikbare oefenknoppen.
-- [ ] Verwijder Ctrl+E, Ctrl+F1, Ctrl+G, Ctrl+H, Ctrl+N, Delete, End, Home, Page Down, Page Up en Shift+F1 t/m Shift+F5 uit alle sneltoetsenoefeningen.
-- [ ] Controleer de aangepaste oefeningen in de browser.
+- [x] Voeg de drie aangeleverde Sprint Online-werkbalken toe met aanklikbare oefenknoppen.
+- [x] Verwijder Ctrl+E, Ctrl+F1, Ctrl+G, Ctrl+H, Ctrl+N, Delete, End, Home, Page Down, Page Up en Shift+F1 t/m Shift+F5 uit alle sneltoetsenoefeningen.
+- [x] Controleer de aangepaste oefeningen in de browser.
