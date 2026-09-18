@@ -47,10 +47,8 @@ const SNELTOETSEN: Sneltoets[] = [
   { toets: "Ctrl + Y", ctrl: true, code: "y", uitleg: "Opnieuw", tip: "Houd Ctrl ingedrukt en druk dan op de Y." },
   { toets: "Ctrl + S", ctrl: true, code: "s", uitleg: "Een bestand opslaan", tip: "Houd Ctrl ingedrukt en druk dan op de S van opslaan." },
   { toets: "Ctrl + O", ctrl: true, code: "o", uitleg: "Een bestand openen", tip: "Houd Ctrl ingedrukt en druk dan op de O van openen." },
-  { toets: "Ctrl + N", ctrl: true, code: "n", uitleg: "Een nieuw tekstbestand maken", tip: "Houd Ctrl ingedrukt en druk dan op de N van nieuw." },
   { toets: "Ctrl + P", ctrl: true, code: "p", uitleg: "Een bestand afdrukken", tip: "Houd Ctrl ingedrukt en druk dan op de P van printen." },
   { toets: "Ctrl + F", ctrl: true, code: "f", uitleg: "Tekst zoeken", tip: "Houd Ctrl ingedrukt en druk dan op de F van find (zoeken)." },
-  { toets: "Ctrl + H", ctrl: true, code: "h", uitleg: "Tekst vervangen", tip: "Houd Ctrl ingedrukt en druk dan op de H." },
   { toets: "Ctrl + B", ctrl: true, code: "b", uitleg: "De tekst in het vet zetten", tip: "Houd Ctrl ingedrukt en druk dan op de B van bold (vet)." },
   { toets: "Ctrl + I", ctrl: true, code: "i", uitleg: "De tekst cursief zetten", tip: "Houd Ctrl ingedrukt en druk dan op de I van italic (cursief)." },
   { toets: "Ctrl + U", ctrl: true, code: "u", uitleg: "De tekst onderlijnen", tip: "Houd Ctrl ingedrukt en druk dan op de U van underline (onderlijnen)." },
@@ -58,14 +56,7 @@ const SNELTOETSEN: Sneltoets[] = [
   { toets: "Ctrl + D", ctrl: true, code: "d", uitleg: "De huidige datum voorlezen", tip: "Houd Ctrl ingedrukt en druk dan op de D van datum." },
   { toets: "Ctrl + T", ctrl: true, code: "t", uitleg: "De huidige tijd voorlezen", tip: "Houd Ctrl ingedrukt en druk dan op de T van tijd." },
   { toets: "Ctrl + R", ctrl: true, code: "r", uitleg: "De knop Klik en lees activeren", tip: "Houd Ctrl ingedrukt en druk dan op de R." },
-  { toets: "Ctrl + F1", ctrl: true, code: "f1", uitleg: "Het lint minimaliseren en uitvouwen", tip: "Houd Ctrl ingedrukt en druk dan op F1 helemaal bovenaan." },
-  { toets: "Delete", code: "delete", uitleg: "Geselecteerde tekst wissen", tip: "Druk op de Delete-toets (soms staat er Del op)." },
   { toets: "ESC", code: "escape", uitleg: "Een actieve knop deactiveren", tip: "Druk op de Esc-toets, links bovenaan het toetsenbord." },
-  { toets: "Shift + F1", shift: true, code: "f1", uitleg: "Het Negeervak activeren", tip: "Houd Shift ingedrukt en druk dan op F1." },
-  { toets: "Shift + F2", shift: true, code: "f2", uitleg: "Het Volgordevak activeren", tip: "Houd Shift ingedrukt en druk dan op F2." },
-  { toets: "Shift + F3", shift: true, code: "f3", uitleg: "Het Figuurvak activeren", tip: "Houd Shift ingedrukt en druk dan op F3." },
-  { toets: "Shift + F4", shift: true, code: "f4", uitleg: "Het Andere tekst-vak activeren", tip: "Houd Shift ingedrukt en druk dan op F4." },
-  { toets: "Shift + F5", shift: true, code: "f5", uitleg: "Het Taalvak activeren", tip: "Houd Shift ingedrukt en druk dan op F5." },
 ];
 
 const BELONINGEN = [
