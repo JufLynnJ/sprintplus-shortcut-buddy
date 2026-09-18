@@ -5,32 +5,18 @@ import {
   X,
   RotateCcw,
   Star,
-  Menu,
-  Undo2,
-  Redo2,
-  Play,
-  Square,
-  Type,
-  TextSelect,
-  Baseline,
-  Minus,
-  Highlighter,
-  Pencil,
-  BookOpen,
-  Image as ImageIcon,
-  Globe,
-  MousePointer2,
-  Hand,
   MousePointerClick,
   Keyboard,
 } from "lucide-react";
-import type { LucideIcon } from "lucide-react";
 
 import beloningRaket from "@/assets/beloning-raket.png";
 import beloningDino from "@/assets/beloning-dino.png";
 import beloningKat from "@/assets/beloning-kat.png";
 import foutZonnebril from "@/assets/fout-zonnebril.png";
 import chatbot from "@/assets/chatbot.png";
+import werkbalkLezen from "@/assets/sprint-online-lezen.png.asset.json";
+import werkbalkBewerken from "@/assets/sprint-online-bewerken.png.asset.json";
+import werkbalkStuderen from "@/assets/sprint-online-studeren.png.asset.json";
 
 export const Route = createFileRoute("/sprint-online")({
   head: () => ({
@@ -57,33 +43,29 @@ export const Route = createFileRoute("/sprint-online")({
 type Knop = {
   id: string;
   label: string;
-  icon: LucideIcon;
-  groep: number;
+  tab: "Lezen" | "Bewerken" | "Studeren";
+  vak: { left: number; top: number; width: number; height: number };
   opdracht: string;
   tip: string;
 };
 
 const KNOPPEN: Knop[] = [
-  { id: "menu", label: "Menu", icon: Menu, groep: 0, opdracht: "het menu van Sprint Online openen", tip: "Het menu zijn de drie streepjes helemaal links." },
-  { id: "ongedaan", label: "Ongedaan maken", icon: Undo2, groep: 0, opdracht: "je laatste actie ongedaan maken", tip: "Zoek het pijltje dat naar links draait." },
-  { id: "opnieuw", label: "Opnieuw doen", icon: Redo2, groep: 0, opdracht: "iets opnieuw doen dat je net ongedaan maakte", tip: "Zoek het pijltje dat naar rechts draait." },
-  { id: "lezen", label: "Voorlezen", icon: Play, groep: 1, opdracht: "de tekst laten voorlezen", tip: "Het driehoekje (play), net zoals bij muziek starten." },
-  { id: "stop", label: "Stoppen", icon: Square, groep: 1, opdracht: "het voorlezen stoppen", tip: "Het vierkantje naast de play-knop." },
-  { id: "selectie", label: "Selectie lezen", icon: TextSelect, groep: 2, opdracht: "enkel het stuk tekst laten lezen dat je selecteerde", tip: "Het vakje met stippellijntjes." },
-  { id: "tekstvak", label: "Tekstvak", icon: Type, groep: 2, opdracht: "een tekstvak toevoegen om zelf in te typen", tip: "De grote letter T." },
-  { id: "letterkleur", label: "Tekstkleur", icon: Baseline, groep: 3, opdracht: "de kleur van je letters veranderen", tip: "De letter A met een streepje eronder." },
-  { id: "lijn", label: "Lijn tekenen", icon: Minus, groep: 3, opdracht: "een rechte lijn tekenen", tip: "Het schuine streepje." },
-  { id: "geel", label: "Gele markeerstift", icon: Highlighter, groep: 3, opdracht: "belangrijke woorden geel markeren", tip: "De gele markeerstift." },
-  { id: "groen", label: "Groene markeerstift", icon: Highlighter, groep: 3, opdracht: "woorden groen markeren", tip: "De groene markeerstift." },
-  { id: "potlood", label: "Potlood", icon: Pencil, groep: 3, opdracht: "vrij tekenen of schrijven op je blad", tip: "Het potlood, helemaal rechts van de stiften." },
-  { id: "woordenboek", label: "Woordenboek", icon: BookOpen, groep: 4, opdracht: "de betekenis van een woord opzoeken", tip: "Het open boekje." },
-  { id: "beeldwoordenboek", label: "Beeldwoordenboek", icon: ImageIcon, groep: 4, opdracht: "een afbeelding bij een woord zoeken", tip: "Het boekje met een plaatje in." },
-  { id: "google", label: "Google-woordenboek", icon: Globe, groep: 4, opdracht: "een woord opzoeken op het internet", tip: "Het boekje met de G van Google." },
-  { id: "aanwijzer", label: "Aanwijzer", icon: MousePointer2, groep: 5, opdracht: "gewoon tekst aanklikken en selecteren", tip: "De muispijl." },
-  { id: "hand", label: "Handje", icon: Hand, groep: 5, opdracht: "je blad verschuiven zonder iets te veranderen", tip: "Het handje, helemaal rechts." },
+  { id: "voorlezen", label: "Voorlezen", tab: "Lezen", vak: { left: 61.5, top: 43, width: 5, height: 36 }, opdracht: "de tekst laten voorlezen", tip: "Klik op het witte driehoekje in de werkbalk." },
+  { id: "stop", label: "Stoppen", tab: "Lezen", vak: { left: 67.2, top: 43, width: 4.3, height: 36 }, opdracht: "het voorlezen stoppen", tip: "Klik op het witte vierkantje naast de afspeelknop." },
+  { id: "klik-lees", label: "Klik en lees", tab: "Lezen", vak: { left: 80.1, top: 43, width: 5.5, height: 36 }, opdracht: "één woord aan te wijzen en te laten voorlezen", tip: "Klik op de witte muispijl." },
+  { id: "tekstvak", label: "Tekstvak", tab: "Bewerken", vak: { left: 17.5, top: 42, width: 3.6, height: 40 }, opdracht: "een tekstvak toe te voegen", tip: "Klik op de grote letter T." },
+  { id: "letterkleur", label: "Tekstkleur", tab: "Bewerken", vak: { left: 21.3, top: 42, width: 4.1, height: 40 }, opdracht: "de kleur van letters te veranderen", tip: "Klik op de letter A met het streepje eronder." },
+  { id: "markeren", label: "Markeerstift", tab: "Bewerken", vak: { left: 25.4, top: 42, width: 5, height: 40 }, opdracht: "tekst te markeren", tip: "Klik op de gele markeerstift." },
+  { id: "lijn", label: "Lijn", tab: "Bewerken", vak: { left: 35.2, top: 42, width: 4.2, height: 40 }, opdracht: "een rechte lijn te tekenen", tip: "Klik op het schuine lijnsymbool." },
+  { id: "potlood", label: "Potlood", tab: "Bewerken", vak: { left: 39.5, top: 42, width: 4.4, height: 40 }, opdracht: "vrij te tekenen of schrijven", tip: "Klik op het witte potlood." },
+  { id: "dicteren", label: "Dicteren", tab: "Bewerken", vak: { left: 78.3, top: 42, width: 4.5, height: 40 }, opdracht: "tekst in te spreken", tip: "Klik op de witte microfoon." },
+  { id: "woordenboek", label: "Woordenboek", tab: "Studeren", vak: { left: 19.8, top: 42, width: 4.8, height: 37 }, opdracht: "de betekenis van een woord op te zoeken", tip: "Klik op het boekje in de eerste groep." },
+  { id: "beeldwoordenboek", label: "Beeldwoordenboek", tab: "Studeren", vak: { left: 25, top: 42, width: 4.8, height: 37 }, opdracht: "een afbeelding bij een woord te zoeken", tip: "Klik op het boekje met de afbeelding." },
+  { id: "google", label: "Google-woordenboek", tab: "Studeren", vak: { left: 30.1, top: 42, width: 4.8, height: 37 }, opdracht: "een woord via Google op te zoeken", tip: "Klik op het boekje met de letter G." },
+  { id: "geel", label: "Gele markeerstift", tab: "Studeren", vak: { left: 37.8, top: 42, width: 5.1, height: 37 }, opdracht: "belangrijke woorden geel te markeren", tip: "Klik op de eerste gele markeerstift." },
+  { id: "groen", label: "Groene markeerstift", tab: "Studeren", vak: { left: 42.9, top: 42, width: 5.1, height: 37 }, opdracht: "woorden groen te markeren", tip: "Klik op de groene markeerstift." },
+  { id: "gom", label: "Gom", tab: "Studeren", vak: { left: 52.8, top: 42, width: 5.1, height: 37 }, opdracht: "een markering te verwijderen", tip: "Klik op de wit omlijnde gom." },
 ];
-
-const TABS = ["Start", "Lezen", "Bewerken", "Studeren"] as const;
 
 type Sneltoets = {
   toets: string;
@@ -108,7 +90,6 @@ const SNELTOETSEN: Sneltoets[] = [
   { toets: "Ctrl + B", ctrl: true, code: "b", uitleg: "Tekst vet maken", tip: "Houd Ctrl ingedrukt en druk dan op de B van bold (vet)." },
   { toets: "Ctrl + I", ctrl: true, code: "i", uitleg: "Tekst cursief maken", tip: "Houd Ctrl ingedrukt en druk dan op de I van italic." },
   { toets: "Ctrl + U", ctrl: true, code: "u", uitleg: "Tekst onderlijnen", tip: "Houd Ctrl ingedrukt en druk dan op de U van underline." },
-  { toets: "Delete", code: "delete", uitleg: "Geselecteerde tekst wissen", tip: "Druk op de Delete-toets (soms staat er Del op)." },
   { toets: "ESC", code: "escape", uitleg: "Een actieve knop weer uitzetten", tip: "Druk op de Esc-toets, links bovenaan het toetsenbord." },
 ];
 
@@ -132,89 +113,47 @@ function shuffle<T>(arr: T[]): T[] {
   return copy;
 }
 
-const KLEUR: Record<string, string> = {
-  letterkleur: "text-white",
-  lijn: "text-white/70",
-  geel: "text-yellow-300",
-  groen: "text-lime-400",
-  potlood: "text-sky-300",
+const WERKBALKEN = {
+  Lezen: { src: werkbalkLezen.url, breedte: 1073, hoogte: 147 },
+  Bewerken: { src: werkbalkBewerken.url, breedte: 1149, hoogte: 136 },
+  Studeren: { src: werkbalkStuderen.url, breedte: 987, hoogte: 164 },
 };
 
 function Werkbalk({
+  tab,
   onKlik,
   actief,
   markeer,
   uitgeschakeld,
 }: {
+  tab: Knop["tab"];
   onKlik: (id: string) => void;
   actief: string | null;
   markeer: string | null;
   uitgeschakeld: boolean;
 }) {
-  const groepen = Array.from(new Set(KNOPPEN.map((k) => k.groep)));
+  const werkbalk = WERKBALKEN[tab];
+  const knoppen = KNOPPEN.filter((knop) => knop.tab === tab);
   return (
-    <div className="w-full overflow-hidden rounded-2xl bg-[oklch(0.28_0.09_275)] shadow-xl">
-      <div className="flex items-center gap-2 px-3 pt-3">
-        {KNOPPEN.filter((k) => k.groep === 0).map((k) => (
-          <KnopUI key={k.id} knop={k} onKlik={onKlik} actief={actief} markeer={markeer} uitgeschakeld={uitgeschakeld} />
+    <div className="w-full overflow-x-auto rounded-lg border-2 border-border bg-card shadow-xl" aria-label={`Werkbalk ${tab}`}>
+      <div className="relative min-w-[720px]" style={{ aspectRatio: `${werkbalk.breedte} / ${werkbalk.hoogte}` }}>
+        <img src={werkbalk.src} alt={`Sprint Online-werkbalk met het tabblad ${tab} geopend`} className="absolute inset-0 h-full w-full" />
+        {knoppen.map((knop) => (
+          <button
+            key={knop.id}
+            type="button"
+            onClick={() => onKlik(knop.id)}
+            disabled={uitgeschakeld}
+            aria-label={knop.label}
+            title={knop.label}
+            className={`absolute rounded-md border-2 border-transparent transition-all focus-visible:outline-none focus-visible:ring-4 focus-visible:ring-ring ${
+              actief === knop.id ? "border-destructive bg-destructive/30 animate-[wiggle_0.5s_ease-in-out]" : "hover:border-primary hover:bg-primary/15"
+            } ${markeer === knop.id ? "border-amber-300 bg-amber-300/30 animate-pulse ring-4 ring-amber-300" : ""}`}
+            style={{ left: `${knop.vak.left}%`, top: `${knop.vak.top}%`, width: `${knop.vak.width}%`, height: `${knop.vak.height}%` }}
+          />
         ))}
-        <div className="ml-3 flex items-end gap-1">
-          {TABS.map((t, i) => (
-            <span
-              key={t}
-              className={`rounded-t-lg px-4 py-2 text-sm font-semibold ${
-                i === 0 ? "bg-[oklch(0.45_0.11_275)] text-white" : "text-white/70"
-              }`}
-            >
-              {t}
-            </span>
-          ))}
-        </div>
-      </div>
-      <div className="flex flex-wrap items-center gap-4 bg-[oklch(0.45_0.11_275)] px-3 py-3">
-        {groepen
-          .filter((g) => g !== 0)
-          .map((g) => (
-            <div key={g} className="flex items-center gap-2 rounded-full bg-[oklch(0.33_0.1_275)] px-3 py-2">
-              {KNOPPEN.filter((k) => k.groep === g).map((k) => (
-                <KnopUI key={k.id} knop={k} onKlik={onKlik} actief={actief} markeer={markeer} uitgeschakeld={uitgeschakeld} />
-              ))}
-            </div>
-          ))}
       </div>
     </div>
-  );
-}
-
-function KnopUI({
-  knop,
-  onKlik,
-  actief,
-  markeer,
-  uitgeschakeld,
-}: {
-  knop: Knop;
-  onKlik: (id: string) => void;
-  actief: string | null;
-  markeer: string | null;
-  uitgeschakeld: boolean;
-}) {
-  const Icon = knop.icon;
-  const isFout = actief === knop.id;
-  const isTip = markeer === knop.id;
-  return (
-    <button
-      type="button"
-      onClick={() => onKlik(knop.id)}
-      disabled={uitgeschakeld}
-      aria-label={knop.label}
-      title={knop.label}
-      className={`flex h-11 w-11 items-center justify-center rounded-xl transition-transform hover:scale-110 focus:outline-none focus-visible:ring-4 focus-visible:ring-white/60 disabled:cursor-not-allowed ${
-        isFout ? "bg-destructive/80 animate-[wiggle_0.5s_ease-in-out]" : "bg-white/10"
-      } ${isTip ? "ring-4 ring-yellow-300 animate-pulse" : ""}`}
-    >
-      <Icon className={`h-6 w-6 ${KLEUR[knop.id] ?? "text-white"}`} aria-hidden />
-    </button>
   );
 }
 
@@ -477,7 +416,7 @@ function KlikOefening() {
   return (
     <div className="flex w-full max-w-3xl flex-col items-center">
       <Voortgang voortgang={o.voortgang} huidige={o.huidige} totaal={o.volgorde.length} score={o.score} />
-      <Werkbalk onKlik={klik} actief={foutId} markeer={o.pogingen >= 2 && o.fase === "vraag" ? o.opgave.id : null} uitgeschakeld={o.fase === "goed"} />
+      <Werkbalk tab={o.opgave.tab} onKlik={klik} actief={foutId} markeer={o.pogingen >= 2 && o.fase === "vraag" ? o.opgave.id : null} uitgeschakeld={o.fase === "goed"} />
       <section className="mt-6 flex w-full flex-col items-center gap-5 rounded-3xl border-2 border-border bg-card p-6 text-center shadow-xl md:p-8">
         {o.fase === "vraag" && (
           <>
